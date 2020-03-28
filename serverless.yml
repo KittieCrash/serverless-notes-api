@@ -50,11 +50,11 @@ functions:
           method: post
           cors: true
           authorizer: aws_iam
-  
-  # Defines an HTTP PAI endpoint that calls the main function in get.js
-  # - path: url path is /notes/{id}
-  # - method: GET request
+
   get:
+    # Defines an HTTP API endpoint that calls the main function in get.js
+    # - path: url path is /notes/{id}
+    # - method: GET request
     handler: get.main
     events:
       - http:
@@ -64,40 +64,52 @@ functions:
           authorizer: aws_iam
 
   list:
+    # Defines an HTTP API endpoint that calls the main function in list.js
+    # - path: url path is /notes
+    # - method: GET request
     handler: list.main
-    event:
-      -http:
-        path: notes
-        method: get
-        cors: true
-        authorizer: aws_iam
-  
+    events:
+      - http:
+          path: notes
+          method: get
+          cors: true
+          authorizer: aws_iam
+
   update:
+    # Defines an HTTP API endpoint that calls the main function in update.js
+    # - path: url path is /notes/{id}
+    # - method: PUT request
     handler: update.main
-    event:
-      -http:
-        path: notes/{id}
-        method: put
-        cors: true
-        authorizer: aws_iam
+    events:
+      - http:
+          path: notes/{id}
+          method: put
+          cors: true
+          authorizer: aws_iam
 
   delete:
+    # Defines an HTTP API endpoint that calls the main function in delete.js
+    # - path: url path is /notes/{id}
+    # - method: DELETE request
     handler: delete.main
-    event:
-      -http:
-        path: notes/{id}
-        method: delete
-        cors: true
-        authorizer: aws_iam
-  
+    events:
+      - http:
+          path: notes/{id}
+          method: delete
+          cors: true
+          authorizer: aws_iam
+
   billing:
+    # Defines an HTTP API endpoint that calls the main function in billing.js
+    # - path: url path is /billing
+    # - method: POST request
     handler: billing.main
-    event:
-      -http:
-        path: billing
-        method: post
-        cors: true
-        authorizer: aws_iam
+    events:
+      - http:
+          path: billing
+          method: post
+          cors: true
+          authorizer: aws_iam
 
 # Create our resources with separate CloudFormation templates
 resources:
